@@ -32,16 +32,16 @@ app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
 app.use(express.urlencoded({extended:true}));
 //connection of mongo DB
-const MONGO_URL="mongodb://127.0.0.1:27017/wanderlust"
+// const MONGO_URL="mongodb://127.0.0.1:27017/wanderlust"
 
-main().then(()=>{
-    console.log("connected to DB")
-}).catch((err)=>{
-    console.log(err);
-});
-async function main() {
-    await mongoose.connect(MONGO_URL);
-}
+
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log("MongoDB connected"))
+.catch(err => console.log(err));
+
 
 const sessionOptions={
     secret:"mysupersecreting",
