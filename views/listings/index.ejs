@@ -1,0 +1,37 @@
+<% layout("/layouts/boilerplate") %>
+<div class="container-fluid py-4 mt-5">
+    <h2 class="display-6 mb-5 mt-5 text-center fw-bolder text-dark" style="letter-spacing: 0.5px;">
+        Explore Our Top Destinations
+    </h2>
+    <div class="row row-cols-xxl-4 row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4">
+        <% for(listing of allListing){%>
+        <div class="col">
+            <a href="/listings/<%= listing._id %>" class="listing-link">
+                <div class="card listing-card h-100 border-0 shadow-sm">
+                    <img
+                        src="<%= listing.image.url %>"
+                        class="card-img-top"
+                        alt="<%= listing.title %> listing image"
+                    />
+                    
+                    <div class="card-img-overlay"></div>
+                    
+                    <div class="card-body">
+                        <p class="card-text mb-1 fw-bold text-truncate">
+                            <%= listing.title %>
+                        </p>
+                        
+                        <p class="card-text text-danger-emphasis">
+                            &#8377;
+                            <b class="fs-6">
+                                <%= (listing.price != null ? listing.price.toLocaleString("en-IN") : "N/A") %>
+                            </b> 
+                            /night
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <% } %>
+    </div>
+</div>

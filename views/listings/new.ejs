@@ -1,0 +1,111 @@
+<% layout("/layouts/boilerplate") %>
+<div class="row mt-4">
+  <div class="col-xl-8 col-lg-8 col-md-10 offset-xl-2 offset-lg-2 offset-md-1">
+    
+    <h3 class="mb-4 text-center text-dark fw-bold">
+        Enter Data About New Listing
+    </h3>
+
+    <form method="post" action="/listings" enctype="multipart/form-data" class="needs-validation" novalidate>
+      
+      <div class="mb-3">
+        <label for="title" class="form-label fw-semibold">Listing Title</label>
+        <input
+          type="text"
+          name="listing[title]"
+          placeholder="e.g., Cozy Beachfront Villa"
+          class="form-control"
+          required
+        />
+        <div class="invalid-feedback">Please enter a valid listing title.</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="description" class="form-label fw-semibold">Description</label>
+        <textarea
+          name="listing[description]"
+          placeholder="Describe your listing..."
+          class="form-control"
+          required
+        ></textarea>
+        <div class="invalid-feedback">Please enter a brief description.</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="image" class="form-label fw-semibold">Upload Listing Image</label>
+        <input
+          type="file"
+          name="listing[image]"
+          class="form-control"
+          required
+        />
+        <div class="invalid-feedback">Please upload an image for the listing.</div>
+      </div>
+
+      <div class="row mb-3 g-3">
+        
+        <div class="col-md-4">
+          <label for="price" class="form-label fw-semibold">Price (per night)</label>
+          <div class="input-group">
+            <span class="input-group-text">$</span>
+            <input
+              type="number"
+              name="listing[price]"
+              placeholder="1200"
+              class="form-control"
+              required
+              min="0"
+              pattern="[0-9]*"
+            />
+            <div class="invalid-feedback">Price should be a positive number.</div>
+          </div>
+        </div>
+        
+        <div class="col-md-8">
+          <label for="country" class="form-label fw-semibold">Country</label>
+          <input
+            type="text"
+            name="listing[country]"
+            placeholder="e.g., India"
+            class="form-control"
+            required
+          />
+          <div class="invalid-feedback">Please enter the country name.</div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="location" class="form-label fw-semibold">Location (City/Town)</label>
+        <input
+          type="text"
+          name="listing[location]"
+          placeholder="e.g., Mumbai"
+          class="form-control"
+          required
+        />
+        <div class="invalid-feedback">Please enter the location.</div>
+      </div>
+
+      <button class="add-btn mt-4 btn-lg rounded-pill">ADD CONFIRM</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function () {
+    'use strict'
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = document.querySelectorAll('.needs-validation')
+    // Loop over them and prevent submission
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+        form.classList.add('was-validated')
+      }, false)
+    })
+  })()
+</script>
